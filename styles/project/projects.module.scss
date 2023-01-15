@@ -1,0 +1,109 @@
+.projects {
+    @apply
+        w-full
+        flex
+        flex-col
+        items-center
+        justify-center
+        gap-4
+        pt-4
+        lg:pt-12
+        rounded-md;
+    .project__item {
+        @apply
+            w-full
+            flex
+            flex-col
+            rounded-md
+            overflow-hidden
+            text-center
+
+            lg:flex-row
+            lg:gap-0
+            lg:rounded-md
+            lg:shadow-md
+            lg:backdrop-blur-md
+            lg:overflow-hidden
+            ;
+        .project__item__image {
+            @apply
+                overflow-hidden
+                lg:w-1/2
+                lg:h-auto
+                ;
+            .project__image_object {
+                @apply
+                    object-cover
+                    aspect-video
+            }
+        }
+        .project__item__cover {
+            @apply
+                flex
+                flex-col
+                p-4
+                rounded-b-md
+                lg:rounded-none
+                text-white
+                bg-dark-color-800
+                bg-opacity-30
+                shadow-md
+                backdrop-blur-md
+                overflow-hidden
+                items-center
+                justify-center
+                lg:w-1/2
+                ;
+        }
+
+            .project__item__title {
+                @apply
+                    text-2xl
+                    font-bold
+                    text-white mt-auto;
+            }
+            .project__item__description {
+                @apply
+                    text-base
+                    py-4
+                    text-dark-text-200;
+            }
+            .project__item__links__tags {
+                @apply 
+                    flex
+                    justify-between
+                    flex-col
+                    justify-center
+                    items-center
+                    mt-auto;
+                .project__item__links {
+                    @apply
+                        mt-auto
+                        text-white
+                        hover:text-amaranth-500
+                        transition-all
+                        duration-300
+                        flex
+                        flex-row
+                        justify-center
+                        gap-4
+                        w-fit
+                        pt-4;
+                }
+                .project__item__tags {
+                    @apply
+                        w-fit
+                        flex
+                        flex-row
+                        flex-wrap
+                        gap-2
+                        justify-center
+                        ;
+                    
+                }
+            }
+        }
+}
+.github {
+    @apply w-full;
+}

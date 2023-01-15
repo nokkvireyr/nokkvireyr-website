@@ -1,0 +1,71 @@
+@keyframes intro__text {
+    from {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.header {
+    @apply top-0 left-0 z-10 h-24 w-full flex items-center text-white backdrop-blur-sm fixed;
+    &.header__scrolled {
+        @apply shadow-md border-b-2 border-dark-color-800 border-opacity-5 transition-transform duration-300 ease-in-out bg-dark-color-900 bg-opacity-60;
+    }
+    .header__logo {
+        font-family: var(--font-mono);
+        @apply flex-1 px-12 text-2xl font-bold;
+    }
+    .header__nav {
+        @apply h-full;
+    }
+}
+
+.nav {
+    @apply self-end px-12 h-full;
+
+    .nav__list {
+        @apply flex items-center flex-row gap-4 relative h-full ;
+
+        .nav__item {
+            @for $i from 1 through 10 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{$i * 0.2}s;
+                }
+            }
+            @apply opacity-0 h-full relative;
+            animation: intro__text 1s ease-in-out forwards;
+            a {
+                @apply relative hover:text-amaranth-500 uppercase transition-colors duration-300 ease-in-out h-full flex justify-center items-center text-sm;
+                &:hover {
+                    &::after {
+                        @apply w-full;
+                    }
+                }	
+                &::after {
+                    content: '';
+                    @apply absolute left-0 w-0 h-[2px] bg-amaranth-500 bottom-6 transition-all duration-300 ease-in-out;
+                }
+            }
+        }
+        .nav__item__active {
+            a {
+                @apply text-amaranth-500;
+            }
+        }
+    }
+}
+
+.sidebar {
+    @apply relative w-full h-32 ;
+    ul {
+        @apply flex flex-col items-center justify-center h-full;
+        li {
+            @apply w-12 h-12 bg-white rounded-full flex justify-center items-center;
+        }
+    }
+    .sidebar__icon {
+        @apply text-2xl text-white opacity-70 hover:opacity-100 transition-opacity duration-300 ease-in-out;
+    }
+}
