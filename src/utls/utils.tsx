@@ -5,5 +5,5 @@ export const randomNumber = (min: number, max: number) => { // min and max inclu
 }
 
 export const getAPIURI = () => {
-    return publicRuntimeConfig;
+    return publicRuntimeConfig.NEXT_PUBLIC_API_URL;
 }
