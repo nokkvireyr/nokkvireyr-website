@@ -7,7 +7,11 @@ const nextConfig = {
   images: { domains: ['data-api.nokkvi.is'] },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-  }
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  },
+
 }
 
 module.exports = nextConfig
