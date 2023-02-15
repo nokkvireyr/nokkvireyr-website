@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');:root {
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
+:root {
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
@@ -21,7 +22,6 @@ body {
 }
 *, html {
 
-  scroll-behavior: smooth !important;
 }body {
   @apply bg-dark-color-900;
   margin: 0 !important;
@@ -31,11 +31,38 @@ body {
 }
 
 main {
-  scroll-behavior: smooth;
 
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+input,textarea,select,button {
+  --tw-ring-shadow: 0 0 #000 !important;
+  @apply #{outline-none !important};
+}
+
+@-webkit-keyframes autofill {
+  0%,100% {
+      color: #666;
+      background: transparent;
+  }
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px #3d464d inset !important;
+    border-color: #3d464d !important;
+}
+
+
+/*Additionally, you can use this to change the text color:*/
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: #e7e8e9 !important;
 }

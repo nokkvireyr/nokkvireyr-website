@@ -1,27 +1,44 @@
+import { ContactPage } from '@components/pages/contact';
 import { Intro } from '@components/pages/intro';
 import { Projects } from '@components/pages/projects';
-import { Inter } from '@next/font/google';
+import { Dancing_Script } from '@next/font/google';
 import style from '@styles/home/home.module.scss';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { createContext, useEffect, useRef, useState } from 'react';
 import { BsArrowDown } from 'react-icons/bs';
+import { useCRouter } from 'src/lib/router';
 import { getAPIURI } from 'src/utls/utils';
-const inter = Inter({ subsets: ['latin'] })
+const dancing = Dancing_Script({display: 'swap', weight:['400', '500', '600', '700'], subsets: ['latin-ext']});
+
+export const DataProvider = createContext<any>(undefined);
+
 
 export default function Home(props: any) {
 
   const [loaded, setLoaded] = useState(false);
+
+  const [path, setCurrentPath] = useState<string | undefined>();
+
+  const router = useRouter();
+  const cRouter = useCRouter();
+
   useEffect(() => {
     setLoaded(true);
   }, []);
+
 
   return (
     <>
       {
         loaded && (<>
-
-          <Intro data={props.intro} />
-          <Projects data={props.projects} />
+          <DataProvider.Provider value={{
+            ...props
+          }}>
+            <Intro />
+            <Projects />
+            <ContactPage />
+          </DataProvider.Provider>
         </>
         )
       }
@@ -29,17 +46,23 @@ export default function Home(props: any) {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context: any) => {
+
+  const { params } = context;
+
 
   const res = await fetch(`${getAPIURI()}/items/intro_text`);
   const intro = await res.json();
   const res2 = await fetch(`${getAPIURI()}/items/projects`);
   const projects = await res2.json();
+  const res3 = await fetch(`${getAPIURI()}/items/github_projects?filter[fork][_eq]=false&sort=-stargazers_count`);
+  const github_projects = await res3.json();
 
   return {
     props: {
       intro: intro.data,
-      projects: projects.data
+      projects: projects.data,
+      github: github_projects.data
     }
   }
 }
@@ -101,7 +124,7 @@ export const Hello = () => {
   }, [])
 
   return (
-    <div className="flex flex-col" style={{
+    <div className={`${dancing.className} font-bold flex flex-col`} style={{
       height: `${height}px`,
     }}>
       {hello.map((h, i) => {

@@ -1,27 +1,18 @@
 import { FadeIn } from '@components/fadeIn';
+import { DataProvider } from '@pages/index';
 import style from '@styles/project/github.module.scss';
 import Link from 'next/link';
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 const GithubComponent = () => {
 
-    const [githubData, setGithubData] = useState<any>();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await (await fetch('https://api.github.com/users/nokkvireyr/repos')).json();
-
-            let newdata = data.filter((data: any) => data.private == false && data.fork == false);
-
-            setGithubData(newdata);
-        }
-        fetchData();
-    }, [])
-
+    const { github } = useContext(DataProvider);
+    const [currentThing, setCurrentThing] = useState(0);
     return (
         <>
             <div className={style.github__container}>
-                {githubData && githubData.map((obj: any, index: number) => {
-                    return <GithubObject github={obj} key={index} index={index} />
+                {github && github.map((obj: any, index: number) => {
+
+                    return <GithubObject github={obj} key={index} index={currentThing} />
                 })}
             </div>
         </>
@@ -29,9 +20,9 @@ const GithubComponent = () => {
 }
 
 export const GithubObject = ({ github, index }: { github: any, index: number }) => {
-    console.log(index);
     return (
-        <FadeIn down={true} delay={index * 100}>
+        //delay={index * 100}
+        <FadeIn down={true} >
             <Link href={github.html_url} target={'_blank'} rel='noreferrer'><div className={style.github__item}>
                 <div className={style.github__item__title}>
                     {github.name}

@@ -1,16 +1,22 @@
 import { FadeIn } from '@components/fadeIn';
 import NRGImage from '@components/nrgImage';
+import { DataProvider } from '@pages/index';
 import style from '@styles/project/projects.module.scss';
+import { useContext } from 'react';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { getAPIURI } from 'src/utls/utils';
 import GithubComponent from './github';
 import { PageLayout } from "./page";
-export const Projects = ({ data }: { data: any }) => {
+export const Projects = () => {
+    const { projects } = useContext(DataProvider);
 
     return (
-        <PageLayout id="/#projects">
+        <PageLayout id="#projects">
+            <div className={` text-4xl font-bold text-dark-text-300`}>
+                <span>My Projects</span>
+            </div>
             <div className={style.projects}>
-                {data && data.map((item: any, index: number) => {
+                {projects && projects.map((item: any, index: number) => {
                     return <ProjectComponent key={index} data={item} alt={index % 2 === 0} />
                 })}
                 {/* <ProjectComponent />

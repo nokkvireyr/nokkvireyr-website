@@ -9,6 +9,7 @@ export const Header = () => {
 
     const [y, setY] = useState(0);
     const headerRef = useRef<HTMLDivElement>(null);
+    const [navbarShow, setNavbarShow] = useState(false);
 
     useEffect(() => {
         setY(window.scrollY);
@@ -23,24 +24,30 @@ export const Header = () => {
                     if (y > window.scrollY) {
                         headerRef.current.style.transform = "translateY(0)";
                     } else if (y < window.scrollY) {
-                        headerRef.current.style.transform = "translateY(-100%)";
+                        if(window.innerWidth > 1024) {
+                            headerRef.current.style.transform = "translateY(-100%)";
+                        } else if(!navbarShow) {
+                            headerRef.current.style.transform = "translateY(-100%)";
+                        }
+                        
                     }
                 } else {
                     headerRef.current.classList.remove(style.header__scrolled);
                 }
             }
             setY(window.scrollY);
-        }, [y]
+        }, [y, navbarShow]
     );
 
     useEffect(() => {
         setY(window.scrollY);
         window.addEventListener("scroll", handleNavigation, { passive: true });
-
+        window.addEventListener("resize", handleNavigation, { passive: true });
         return () => {
             window.removeEventListener("scroll", handleNavigation);
+            window.removeEventListener("resize", handleNavigation);
         };
-    }, [handleNavigation]);
+    }, [handleNavigation, navbarShow]);
 
     return (
         <>
@@ -49,7 +56,7 @@ export const Header = () => {
                     <Logo />
                 </div>
                 <section className={style.header__nav}>
-                    <NavBar />
+                    <NavBar setShowNav={setNavbarShow} />
                 </section>
             </header>
         </>
@@ -69,13 +76,33 @@ export const SideBar = () => {
 }
 
 // This is the main navigation component
-export const NavBar = () => {
+export const NavBar = ({setShowNav}:{setShowNav:any}) => {
+    const [show, setShow] = useState(false);
+    const router = useRouter();
+    const open = () => {
+        setShow((prev) => !prev);
+    }
+
+    useEffect(() => {
+        setShow(false);
+    }, [router]);
+
+    useEffect(() => {
+        setShowNav(show);
+    },[show]);
 
     return (
         <>
-            <nav className={style.nav}>
+            <div className={`${style.hamburger} ${show ? style.show : ''}`}>
+                <button onClick={open} className={style.hamburger__bars}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+            </div>
+            <nav className={`${style.nav} ${show ? style.show : ''}`}>
                 <ul className={style.nav__list}>
-                    <NavItem href="/">Home</NavItem>
+                    <NavItem href="/#home">Home</NavItem>
                     <NavItem href="/#projects">Projects</NavItem>
                     <NavItem href="/#contact">Contact</NavItem>
                 </ul>
@@ -101,7 +128,7 @@ export const NavItem = ({ href, children }: { href: string, children: any }) => 
 
     return (
         <>
-            <li className={`${style.nav__item} ${isActive ? style.nav__item__active : ''}`}><Link href={href}>{children}</Link></li>
+            <li className={`${style.nav__item} ${isActive ? style.nav__item__active : ''}`}><Link href={href} scroll={false}>{children}</Link></li>
         </>
     )
 
@@ -111,7 +138,7 @@ export const NavItem = ({ href, children }: { href: string, children: any }) => 
 export const Logo = () => {
     return (
         <>
-            <Link href='/' className={style.logo}>NRG</Link>
+            <Link href='/' className={style.logo}>Nökkvi</Link>
         </>
     )
 }

@@ -1,15 +1,19 @@
-import { Hello, NextArrow } from "@pages/index";
+import { DataProvider, Hello, NextArrow } from "@pages/index";
 import style from '@styles/home/home.module.scss';
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { PageLayout } from "./page";
 
-export const Intro = (props: any) => {
+export const Intro = () => {
 
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    const { intro } = useContext(DataProvider);
 
     const [data, setData] = useState();
 
     useEffect(() => {
+
+
         window.addEventListener('scroll', scroller, { passive: true });
 
         // const fetchData = async () => {
@@ -19,8 +23,6 @@ export const Intro = (props: any) => {
         // }
 
         // fetchData();
-
-        console.log(props.data);
 
         return () => {
             window.removeEventListener('scroll', scroller);
@@ -47,13 +49,13 @@ export const Intro = (props: any) => {
 
     return (
         <>
-            <PageLayout id="/">
+            <PageLayout id="#home">
                 <section className={style.intro}>
                     <div className={style.intro__text} ref={scrollRef}>
                         <div data-scroll data-timeout={0} className={`${style.intro__hello} ${style.in}`}><span><Hello /></span></div>
-                        <div data-scroll data-timeout={25} className={`${style.intro__title}  ${style.in}`}><span>{props.data.title}</span></div>
-                        <div data-scroll data-timeout={50} className={`${style.intro__sub__title} ${style.in}`}><span>{props.data.subtitle}</span></div>
-                        <div data-scroll data-timeout={75} className={`${style.intro__description} ${style.in}`}><span>{props.data.description}</span></div>
+                        <div data-scroll data-timeout={25} className={`${style.intro__title}  ${style.in}`}><span>{intro.title}</span></div>
+                        <div data-scroll data-timeout={50} className={`${style.intro__sub__title} ${style.in}`}><span>{intro.subtitle}</span></div>
+                        <div data-scroll data-timeout={75} className={`${style.intro__description} ${style.in}`}><span>{intro.description}</span></div>
                     </div>
                     {/* <div className={style.intro__image}>
                 <img src="/images/developer.svg" alt="Developer" />
