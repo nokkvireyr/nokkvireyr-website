@@ -1,4 +1,5 @@
 import style from '@styles/nav/nav.module.scss';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -138,7 +139,9 @@ export const NavItem = ({ href, children }: { href: string, children: any }) => 
 export const Logo = () => {
     return (
         <>
-            <Link href='/' className={style.logo}>Nökkvi</Link>
+            <Link href='/' className={style.logo}>
+                <Image priority src="/logo.svg" height={42} width={42} alt="Logo" />
+            </Link>
         </>
     )
 }

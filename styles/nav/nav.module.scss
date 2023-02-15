@@ -15,10 +15,13 @@
     }
     .header__logo {
         font-family: var(--font-mono);
-        @apply flex-1 px-12 text-2xl font-bold;
+        @apply text-2xl font-bold h-full;
+        a {
+            @apply flex px-8 h-full;
+        }
     }
     .header__nav {
-        @apply h-full;
+        @apply h-full ml-auto;
     }
 }
 
