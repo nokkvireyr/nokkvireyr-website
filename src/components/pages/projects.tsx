@@ -2,9 +2,9 @@ import { FadeIn } from '@components/fadeIn';
 import NRGImage from '@components/nrgImage';
 import { DataProvider } from '@pages/index';
 import style from '@styles/project/projects.module.scss';
+import { getAPIURI } from '@utils/utils';
 import { useContext } from 'react';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import { getAPIURI } from 'src/utls/utils';
 import GithubComponent from './github';
 import { PageLayout } from "./page";
 export const Projects = () => {

@@ -28,6 +28,9 @@
       ],
       "@context/*": [
         "./context/*"
+      ],
+      "@utils/*": [
+        "./utls/*"
       ]
     },
     "allowJs": true,

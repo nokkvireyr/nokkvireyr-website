@@ -55,7 +55,7 @@ VOLUME ["/app/.next/cache"]
 
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./src
+COPY --from=builder /app/package.json ./
 COPY --from=builder /app/service-worker.js ./
 
 

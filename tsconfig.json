@@ -29,6 +29,9 @@
       "@context/*": [
         "./context/*"
       ],
+      "@utils/*": [
+        "./src/utls/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,

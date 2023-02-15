@@ -3,12 +3,12 @@ import { Intro } from '@components/pages/intro';
 import { Projects } from '@components/pages/projects';
 import { Dancing_Script } from '@next/font/google';
 import style from '@styles/home/home.module.scss';
+import { getAPIURI } from '@utils/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { createContext, useEffect, useRef, useState } from 'react';
 import { BsArrowDown } from 'react-icons/bs';
-import { useCRouter } from 'src/lib/router';
-import { getAPIURI } from 'src/utls/utils';
+import { useCRouter } from '../lib/router';
 const dancing = Dancing_Script({display: 'swap', weight:['400', '500', '600', '700'], subsets: ['latin-ext']});
 
 export const DataProvider = createContext<any>(undefined);
