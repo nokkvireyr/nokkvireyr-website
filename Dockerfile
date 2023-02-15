@@ -32,7 +32,7 @@ COPY /src ./
 
 COPY postcss.config.js ./
 COPY tailwind.config.js ./tailwind.config.js
-COPY tsconfig.json ./
+COPY tsconfig.json.production ./tsconfig.json
 
 RUN npm run build
 
