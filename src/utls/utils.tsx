@@ -5,5 +5,5 @@ export const randomNumber = (min: number, max: number) => { // min and max inclu
 }
 
 export const getAPIURI = () => {
-    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+    return process.env.NEXT_PUBLIC_API_URL;
 }
