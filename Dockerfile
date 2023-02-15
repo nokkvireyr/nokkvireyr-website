@@ -1,5 +1,5 @@
 #Dependancy stage
-FROM node:16.14.0 as deps
+FROM node:19.1.0 as deps
 #RUN apt-get update -y
 #RUN sudo apt-get install -y libc6
 
@@ -7,12 +7,11 @@ WORKDIR /app
 
 COPY package-lock.json ./
 COPY package.json ./
-RUN npm update csfundmodels
 RUN npm install
 
 #The building stage
 
-FROM node:16.14.0 as builder
+FROM node:19.1.0 as builder
 
 ENV NODE_ENV=production
 
@@ -31,13 +30,13 @@ COPY /src ./
 # COPY /keys ./keys
 
 COPY postcss.config.js ./
-COPY tailwind.config.js ./tailwind.config.js
+COPY tailwind.config.js ./
 COPY tsconfig.json.production ./tsconfig.json
 
 RUN npm run build
 
 #Runner
-FROM node:16.14.0 as runner
+FROM node:19.1.0 as runner
 
 WORKDIR /app
 
@@ -56,7 +55,7 @@ VOLUME ["/app/.next/cache"]
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./src
-COPY --from=builder /app/service-worker.js ./
+# COPY --from=builder /app/service-worker.js ./
 
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
