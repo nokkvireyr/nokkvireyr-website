@@ -9,15 +9,29 @@
     }
 }
 .header {
-    @apply top-0 left-0 z-50 h-24 w-full flex items-center text-white backdrop-blur-sm fixed;
+    @apply top-0 left-0 z-50 h-24 w-full flex text-white backdrop-blur-sm fixed items-start lg:items-center;
+    -webkit-transition:  height 0.7s, transform 0.3s ease-in-out;
+    -moz-transition:  height 0.7s, transform 0.3s ease-in-out;
+    -o-transition:  height 0.7s, transform 0.3s ease-in-out;
+    transition:  height 0.7s, transform 0.3s ease-in-out;
+    &.header_open {
+        @apply h-screen lg:h-24 items-start;
+        &:after {
+            content: '';
+            @apply lg:hidden absolute w-full h-96 bg-dark-color-900 bg-opacity-60 backdrop-blur-sm bottom-1 left-0 translate-y-full;
+        }
+        &.header__scrolled {
+            @apply border-b-0 lg:border-b-2 shadow-none lg:shadow-md;
+        }
+    }
     &.header__scrolled {
-        @apply shadow-md border-b-2 border-dark-color-800 border-opacity-5 transition-transform duration-300 ease-in-out bg-dark-color-900 bg-opacity-60;
+        @apply shadow-md border-b-2 border-dark-color-800 border-opacity-5 bg-dark-color-900 bg-opacity-60;
     }
     .header__logo {
         font-family: var(--font-mono);
-        @apply text-2xl font-bold h-full;
+        @apply text-2xl font-bold h-24;
         a {
-            @apply flex px-8 h-full;
+            @apply flex px-4 h-full;
         }
     }
     .header__nav {
@@ -26,7 +40,7 @@
 }
 
 .hamburger {
-    @apply h-full w-auto items-center justify-center pr-4 flex lg:hidden;
+    @apply h-24 w-auto items-center justify-center pr-4 flex lg:hidden;
     &.show {
         @apply fixed z-50 right-0;
         .hamburger__bars {
@@ -53,7 +67,7 @@
 }
 
 .nav {
-    @apply self-end px-12 fixed w-full h-screen bg-dark-color-900 backdrop-blur-sm lg:backdrop-blur-0 bg-opacity-90 top-0 left-0 lg:relative lg:h-full lg:bg-transparent
+    @apply self-end px-12 fixed w-full h-screen top-0 left-0 lg:relative lg:h-full lg:bg-transparent
     -translate-y-full lg:-translate-y-0
     pointer-events-none lg:pointer-events-auto
     opacity-0 lg:opacity-100

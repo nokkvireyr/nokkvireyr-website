@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta charSet='UTF-8' />
         <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport" />
-        <meta content="#0d1821" name="theme-color" />
+        {/* <meta content="#0d1821" name="theme-color" /> */}
         <meta name="title" content="Nökkvi.is | Freelancer" />
         <meta name="description" content="This is my portfolio website, made with love with NextJS. Here you can see all the projects I have worked on." />
         <meta name="keywords" content="Nokkvi,nokkvi,Nökkvi,nokkvi,portfolios,portfolio,resume,nextjs,iceland,freelancer,front-end-developer,frontend,programming,html,css,scss" />
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4088b7" />
         <meta name="msapplication-TileColor" content="#4088b7" />
-        <meta name="theme-color" content="#4088b7"></meta>
+        <meta name="theme-color" content="#0d1821"></meta>
         <title>Nökkvi.is | Freelancer</title>
       </Head>
       <main className={inter.className}>

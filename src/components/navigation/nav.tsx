@@ -10,15 +10,16 @@ export const Header = () => {
 
     const [y, setY] = useState(0);
     const headerRef = useRef<HTMLDivElement>(null);
-    const [navbarShow, setNavbarShow] = useState(false);
+    const [show, setShow] = useState(false);
+    
+    const router = useRouter();
 
     useEffect(() => {
         setY(window.scrollY);
     })
 
     const handleNavigation = useCallback(
-        (e: any) => {
-            const window = e.currentTarget;
+        () => {
             if (headerRef.current) {
                 if (window.scrollY > 100) {
                     headerRef.current.classList.add(style.header__scrolled);
@@ -27,7 +28,7 @@ export const Header = () => {
                     } else if (y < window.scrollY) {
                         if(window.innerWidth > 1024) {
                             headerRef.current.style.transform = "translateY(-100%)";
-                        } else if(!navbarShow) {
+                        } else if(!show) {
                             headerRef.current.style.transform = "translateY(-100%)";
                         }
                         
@@ -37,7 +38,7 @@ export const Header = () => {
                 }
             }
             setY(window.scrollY);
-        }, [y, navbarShow]
+        }, [y, show]
     );
 
     useEffect(() => {
@@ -48,16 +49,35 @@ export const Header = () => {
             window.removeEventListener("scroll", handleNavigation);
             window.removeEventListener("resize", handleNavigation);
         };
-    }, [handleNavigation, navbarShow]);
+    }, [handleNavigation, show]);
+    const open = () => {
+        setShow((prev) => !prev);
+    }
 
+    useEffect(() => {
+        if(!show) {
+            handleNavigation();
+        }
+    }, [show, handleNavigation])
+
+    useEffect(() => {
+        setShow(false);
+    }, [router]);
     return (
         <>
-            <header className={style.header} ref={headerRef}>
+            <header className={`${style.header} ${show ? `${style.header_open} ${style.header__scrolled}` : ''}`} ref={headerRef}>
                 <div className={style.header__logo}>
                     <Logo />
                 </div>
                 <section className={style.header__nav}>
-                    <NavBar setShowNav={setNavbarShow} />
+                    <NavBar show={show} />
+                </section>
+                <section className={`${style.hamburger} ${show ? style.show : ''}`}>
+                    <button onClick={open} className={style.hamburger__bars}>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
                 </section>
             </header>
         </>
@@ -77,30 +97,9 @@ export const SideBar = () => {
 }
 
 // This is the main navigation component
-export const NavBar = ({setShowNav}:{setShowNav:any}) => {
-    const [show, setShow] = useState(false);
-    const router = useRouter();
-    const open = () => {
-        setShow((prev) => !prev);
-    }
-
-    useEffect(() => {
-        setShow(false);
-    }, [router]);
-
-    useEffect(() => {
-        setShowNav(show);
-    },[show]);
-
+export const NavBar = ({show}:{show:boolean}) => {
     return (
         <>
-            <div className={`${style.hamburger} ${show ? style.show : ''}`}>
-                <button onClick={open} className={style.hamburger__bars}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </button>
-            </div>
             <nav className={`${style.nav} ${show ? style.show : ''}`}>
                 <ul className={style.nav__list}>
                     <NavItem href="/#home">Home</NavItem>
