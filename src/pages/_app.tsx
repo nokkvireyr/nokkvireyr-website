@@ -3,6 +3,7 @@ import { Inter } from '@next/font/google';
 import '@styles/globals.scss';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { GoogleAnalytics } from "nextjs-google-analytics";
 import { RouterContext, useCRouter } from '../lib/router';
 
 const inter = Inter({display: 'swap', weight: ['200','400']});
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#0d1821"></meta>
         <title>Nökkvi.is | Freelancer</title>
       </Head>
+      <GoogleAnalytics trackPageViews gaMeasurementId='G-LRVSHK5K67' />
       <main className={inter.className}>
         <RouterContext.Provider value={cRouter}>
           <Header />

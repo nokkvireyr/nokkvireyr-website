@@ -13,7 +13,7 @@
     -webkit-transition:  height 0.7s, transform 0.3s ease-in-out;
     -moz-transition:  height 0.7s, transform 0.3s ease-in-out;
     -o-transition:  height 0.7s, transform 0.3s ease-in-out;
-    transition:  height 0.7s, transform 0.3s ease-in-out;
+    transition:  height 0.3s, transform 0.3s ease-in-out;
     &.header_open {
         @apply h-screen lg:h-24 items-start;
         &:after {
