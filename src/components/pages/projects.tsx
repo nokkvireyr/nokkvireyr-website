@@ -4,7 +4,7 @@ import { DataProvider } from '@pages/index';
 import style from '@styles/project/projects.module.scss';
 import { getAPIURI } from '@utils/utils';
 import { useContext } from 'react';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithubAlt } from 'react-icons/fa';
 import GithubComponent from './github';
 import { PageLayout } from "./page";
 export const Projects = () => {
@@ -56,9 +56,9 @@ export const ProjectComponent = ({ data, alt }: { alt?: boolean, data: any }) =>
                         <div className={`${style.project__item__links} ${alt ? 'flex-row-reverse' : 'flex-row'}`}>
                             {data && data.links.map((data: any, index: number) => {
                                 if (data.site_name == 'site') {
-                                    return <a key={index} href={data.url} target={'_blank'} rel={'noreferrer'}><span><FaExternalLinkAlt /></span></a>
+                                    return <a key={index} href={data.url} target={'_blank'} rel={'noreferrer'} aria-label={data.url}><span><FaExternalLinkAlt /></span></a>
                                 } else if (data.site_name == 'github') {
-                                    return <a key={index} href={data.url} target={'_blank'} rel={'noreferrer'}><span><FaExternalLinkAlt /></span></a>
+                                    return <a key={index} href={data.url} target={'_blank'} rel={'noreferrer'} aria-label={data.url}><span><FaGithubAlt /></span></a>
                                 }
                             })}
                         </div>

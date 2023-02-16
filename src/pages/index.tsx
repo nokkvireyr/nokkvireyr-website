@@ -70,7 +70,7 @@ export const getServerSideProps = async (context: any) => {
 export const NextArrow = ({ href }: { href: string }) => {
   return (
     <div className={style.next_arrow}>
-      <Link href={href}>
+      <Link href={href} aria-label="Next page">
         <BsArrowDown className='w-5 h-5' />
       </Link>
     </div>

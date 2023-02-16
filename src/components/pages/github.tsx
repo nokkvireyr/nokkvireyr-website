@@ -23,7 +23,7 @@ export const GithubObject = ({ github, index }: { github: any, index: number }) 
     return (
         //delay={index * 100}
         <FadeIn down={true} >
-            <Link href={github.html_url} target={'_blank'} rel='noreferrer'><div className={style.github__item}>
+            <Link href={github.html_url} aria-label={github.name} target={'_blank'} rel='noreferrer'><div className={style.github__item}>
                 <div className={style.github__item__title}>
                     {github.name}
                 </div>

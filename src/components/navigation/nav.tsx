@@ -73,7 +73,7 @@ export const Header = () => {
                     <NavBar show={show} />
                 </section>
                 <section className={`${style.hamburger} ${show ? style.show : ''}`}>
-                    <button onClick={open} className={style.hamburger__bars}>
+                    <button aria-label='Hamburger' onClick={open} className={style.hamburger__bars}>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -87,11 +87,11 @@ export const Header = () => {
 export const SideBar = () => {
     return (
         <nav className={style.sidebar}>
-            <ul>
+            <div className={style.ul}>
                 <IconContext.Provider value={{ className: style.sidebar__icon, size: '32' }}>
-                    <Link href="https://github.com/nokkvireyr"><AiFillGithub /></Link>
+                    <Link aria-label={"My github"} href="https://github.com/nokkvireyr"><AiFillGithub /></Link>
                 </IconContext.Provider>
-            </ul>
+            </div>
         </nav>
     )
 }
@@ -128,7 +128,7 @@ export const NavItem = ({ href, children }: { href: string, children: any }) => 
 
     return (
         <>
-            <li className={`${style.nav__item} ${isActive ? style.nav__item__active : ''}`}><Link href={href} scroll={false}>{children}</Link></li>
+            <li className={`${style.nav__item} ${isActive ? style.nav__item__active : ''}`}><Link href={href} scroll={false} aria-label={href}>{children}</Link></li>
         </>
     )
 
@@ -138,7 +138,7 @@ export const NavItem = ({ href, children }: { href: string, children: any }) => 
 export const Logo = () => {
     return (
         <>
-            <Link href='/' className={style.logo}>
+            <Link href='/' aria-label='Logo' className={style.logo}>
                 <Image priority src="/logo.svg" height={42} width={42} alt="Logo" />
             </Link>
         </>
