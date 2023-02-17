@@ -31,7 +31,7 @@ export default function Home(props: any) {
   return (
     <>
       {
-        loaded && (<>
+        loaded ? (<>
           <DataProvider.Provider value={{
             ...props
           }}>
@@ -40,7 +40,11 @@ export default function Home(props: any) {
             <ContactPage />
           </DataProvider.Provider>
         </>
-        )
+        ):
+        <div className="block w-full min-h-screen h-[200vh]">
+          <h1>Loading</h1>
+        </div>
+      
       }
     </>
   )
