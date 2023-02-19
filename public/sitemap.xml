@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://nokkvi.is/</loc>
+      <lastmod>2023-02-19T20:13:36.768Z</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    <url>
+      <loc>https://nokkvi.is.is/#projects</loc>
+      <lastmod>2023-02-19T20:13:36.768Z</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    <url>
+      <loc>https://nokkvi.is.is/#contact</loc>
+      <lastmod>2023-02-19T20:13:36.768Z</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+</urlset>
