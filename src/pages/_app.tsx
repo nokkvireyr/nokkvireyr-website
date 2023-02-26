@@ -1,9 +1,9 @@
-import { Partytown } from '@builder.io/partytown/react';
 import { Header, SideBar } from '@components/navigation/nav';
 import { Inter } from '@next/font/google';
 import '@styles/globals.scss';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { RouterContext, useCRouter } from '../lib/router';
 
 const inter = Inter({display: 'swap', weight: ['200','400']});
@@ -34,14 +34,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#4088b7" />
         <meta name="theme-color" content="#0d1821"></meta>
         <title>Nökkvi.is | Freelancer</title>
-        <Partytown debug={true} forward={['dataLayer.push']} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        {/* <Partytown debug={true} forward={['dataLayer.push']} />
         <script
           type="text/partytown"
           src={`https://www.googletagmanager.com/gtag/js?id=G-LRVSHK5K67`}
-        />
+        /> */}
       </Head>
-      <script
+      {/* <script
           type="text/partytown"
           dangerouslySetInnerHTML={{
               __html: `
@@ -54,8 +53,8 @@ export default function App({ Component, pageProps }: AppProps) {
                   });
               `,
           }}
-      />
-      {/* <GoogleAnalytics trackPageViews gaMeasurementId='G-LRVSHK5K67' /> */}
+      /> */}
+      <GoogleAnalytics trackPageViews gaMeasurementId='G-LRVSHK5K67' />
       <main className={inter.className}>
         <RouterContext.Provider value={cRouter}>
           <Header />
